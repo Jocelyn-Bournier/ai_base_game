@@ -35,6 +35,12 @@ position = Vector2( 96, 16 )
 [node name="plateform4" parent="plateforms" instance=ExtResource( 4 )]
 position = Vector2( 96, 40 )
 
+[node name="plateform5" parent="plateforms" instance=ExtResource( 4 )]
+position = Vector2( 224, 56 )
+
+[node name="plateform6" parent="plateforms" instance=ExtResource( 4 )]
+position = Vector2( 224, 81 )
+
 [node name="Doors" type="Node2D" parent="."]
 
 [node name="Door_to_level_1" parent="Doors" instance=ExtResource( 3 )]
@@ -46,6 +52,8 @@ position = Vector2( 40, 85 )
 [connection signal="body_exited" from="plateforms/plateform1" to="plateforms" method="_on_plateform_body_exited"]
 [connection signal="body_exited" from="plateforms/plateform2" to="plateforms" method="_on_plateform_body_exited"]
 [connection signal="body_exited" from="plateforms/plateform4" to="plateforms" method="_on_plateform_body_exited"]
+[connection signal="body_exited" from="plateforms/plateform5" to="plateforms" method="_on_plateform_body_exited"]
+[connection signal="body_exited" from="plateforms/plateform6" to="plateforms" method="_on_plateform_body_exited"]
 [connection signal="door_entered" from="Doors/Door_to_level_1" to="." method="_on_Door_door_entered"]
 [connection signal="door_exited" from="Doors/Door_to_level_1" to="." method="_on_Door_door_exited"]
 [connection signal="door_entered" from="Doors/Door_to_level_2" to="." method="_on_Door_door_entered"]

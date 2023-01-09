@@ -4,6 +4,7 @@ signal door_entered
 signal door_exited
 signal go_down
 signal item_picked
+signal victory
 
 func place(pos):
 	position=pos
@@ -26,3 +27,6 @@ func go_down(hero):
 func _on_Key_area_entered(area):
 	$Key.queue_free()
 	emit_signal("item_picked","key")
+
+func _on_Victory_area_entered(area):
+	emit_signal("victory")

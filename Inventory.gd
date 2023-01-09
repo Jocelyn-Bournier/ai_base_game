@@ -16,3 +16,6 @@ func remove(item) :
 
 func getAll() :
 	return itemList
+	
+func has(item) :
+	return itemList.has(item)

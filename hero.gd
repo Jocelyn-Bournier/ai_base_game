@@ -25,10 +25,12 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #delta is handled automaticaly by move_and_slide
-func _physics_process(_delta):
+func _physics_process(delta):
 	
+	delta = 1.0 - (1.0 - delta * 60.0)
+
 	if(speed > BASE_SPEED) :
-		speed = speed * 0.95
+		speed = speed * 0.95 * delta
 		if(speed > 1.5*BASE_SPEED):
 			$AnimatedSprite.play("dash")
 	if(speed <= BASE_SPEED) :
@@ -57,18 +59,18 @@ func _physics_process(_delta):
 		velocity.y = GRAVITY
 	
 	if velocity.x != 0 :
-		velocity.x*=speed
+		velocity.x*=speed*delta
 		$AnimatedSprite.play("run")
 		$AnimatedSprite.flip_h = velocity.x > 0
 	else :
-		velocity.x=pastVelocity.x/SAVON
+		velocity.x=pastVelocity.x/SAVON*delta
 		if (velocity.x > -5 && velocity.x < 5):
 			velocity.x = 0
 			$AnimatedSprite.play("idle")
 		
 	if velocity.y != JUMP :
 		if pastVelocity.y < 0 || !is_on_floor() :
-			velocity.y = pastVelocity.y + GRAVITY
+			velocity.y = pastVelocity.y + GRAVITY*delta
 			if velocity.y > FALL_SPEED :
 				velocity.y = FALL_SPEED
 				

@@ -17,11 +17,11 @@ func _ready():
 #	pass
 func changeLevel(from,to):
 	$Hero.hide()
-	print(from,to)
+	print("from ",from," to ",to)
 	get_node("Level_"+String(to)).place($MapOrigin.position)
 	get_node("Level_"+String(from)).place($MapStorage.position)
-	print(get_node("Level_"+String(to)+"/Door_to_level_"+String(to)))
-	$Hero.start($MapOrigin.position+get_node("Level_"+String(to)+"/Door_to_level_"+String(from)).position,GRAVITY)
+	print(get_node("Level_"+String(to)+"/Doors/Door_to_level_"+String(from)))
+	$Hero.start($MapOrigin.position+get_node("Level_"+String(to)+"/Doors/Door_to_level_"+String(from)).position,GRAVITY)
 	currLevel = to
 
 func _on_Level_door_entered(door):
@@ -48,3 +48,7 @@ func _on_Hero_go_down():
 func _on_item_picked(item):
 	$Hero/Inventory.add(item)
 	print($Hero/Inventory.getAll())
+	
+func _on_Level_victory():
+	if($Hero/Inventory.has("key")):
+		print("victory !")
