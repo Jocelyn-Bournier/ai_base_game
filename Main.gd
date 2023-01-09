@@ -12,7 +12,6 @@ func _ready():
 	$Level_0.place($MapOrigin.position)
 	$Hero.start(get_node("Level_"+String(currLevel)).position+get_node("Level_"+String(currLevel)+"/StartingPos").position,GRAVITY)
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
