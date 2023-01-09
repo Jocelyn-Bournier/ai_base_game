@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://hero.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Main.gd" type="Script" id=2]
+[ext_resource path="res://Inventory.gd" type="Script" id=3]
+[ext_resource path="res://Level_0.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Level_1.tscn" type="PackedScene" id=6]
+
+[node name="Main" type="Node"]
+script = ExtResource( 2 )
+
+[node name="MapStorage" type="Position2D" parent="."]
+position = Vector2( 0, 999 )
+
+[node name="MapOrigin" type="Position2D" parent="."]
+position = Vector2( 0, 360 )
+
+[node name="Level_0" parent="." instance=ExtResource( 4 )]
+position = Vector2( 283, 687 )
+
+[node name="StartingPos" type="Position2D" parent="Level_0"]
+position = Vector2( 26, -26 )
+
+[node name="Level_1" parent="." instance=ExtResource( 6 )]
+position = Vector2( 35, 803 )
+
+[node name="Hero" parent="." instance=ExtResource( 1 )]
+position = Vector2( 76, 310 )
+
+[node name="Camera2D" type="Camera2D" parent="Hero"]
+current = true
+zoom = Vector2( 0.5, 0.5 )
+
+[node name="Inventory" type="Node" parent="Hero"]
+script = ExtResource( 3 )
+
+[connection signal="door_entered" from="Level_0" to="." method="_on_Level_door_entered"]
+[connection signal="door_exited" from="Level_0" to="." method="_on_Level_door_exited"]
+[connection signal="door_entered" from="Level_1" to="." method="_on_Level_door_entered"]
+[connection signal="door_exited" from="Level_1" to="." method="_on_Level_door_exited"]
+[connection signal="item_picked" from="Level_1" to="." method="_on_item_picked"]
+[connection signal="go_down" from="Hero" to="." method="_on_Hero_go_down"]
+[connection signal="interact" from="Hero" to="." method="_on_Hero_interact"]
