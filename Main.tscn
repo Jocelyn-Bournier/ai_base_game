@@ -29,11 +29,14 @@ position = Vector2( 341, 791 )
 position = Vector2( 594, 799 )
 
 [node name="Hero" parent="." instance=ExtResource( 1 )]
-position = Vector2( 1046, 603 )
+position = Vector2( 166, -174 )
 
 [node name="Camera2D" type="Camera2D" parent="Hero"]
 current = true
 zoom = Vector2( 0.5, 0.5 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Inventory" type="Node" parent="Hero"]
 script = ExtResource( 3 )

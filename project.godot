@@ -10,7 +10,7 @@ config_version=4
 
 [application]
 
-config/name="first_solo_game"
+config/name="ai_base_game"
 run/main_scene="res://Main.tscn"
 config/icon="res://icon.png"
 
