@@ -8,7 +8,9 @@ var GRAVITY
 const SAVON = 1.3
 const JUMP = -210
 const FALL_SPEED = 90
-var speed = 50
+const DASH_SPEED = 200
+const BASE_SPEED = 50
+var speed = BASE_SPEED
 var cooldown_dash = 0
 var velocity = Vector2.ZERO
 
@@ -22,12 +24,15 @@ func _ready():
 	hide()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(delta):
+#delta is handled automaticaly by move_and_slide
+func _physics_process(_delta):
 	
-	if(speed > 50) :
+	if(speed > BASE_SPEED) :
 		speed = speed * 0.95
-	if(speed < 50) :
-		speed = 50
+		if(speed > 1.5*BASE_SPEED):
+			$AnimatedSprite.play("dash")
+	if(speed <= BASE_SPEED) :
+		speed = BASE_SPEED
 	
 	if Input.is_action_just_pressed("ui_accept") :
 		emit_signal("interact")
@@ -36,8 +41,9 @@ func _physics_process(delta):
 		emit_signal("go_down")
 	
 	if Input.is_action_just_pressed("ui_dash") && cooldown_dash == 0 :
-		speed = speed * 4
+		speed = DASH_SPEED
 		cooldown_dash = 1
+		$AnimatedSprite.play("dash")
 		$DashCooldown.start(1)
 	
 	var pastVelocity = velocity
@@ -66,7 +72,7 @@ func _physics_process(delta):
 			if velocity.y > FALL_SPEED :
 				velocity.y = FALL_SPEED
 				
-	move_and_slide(velocity,Vector2(0,-1))
+	var _returnedVector = move_and_slide(velocity,Vector2(0,-1))
 
 func _on_DashCooldown_timeout():
 	print("dash available")
