@@ -9,6 +9,11 @@ var doorToTransition = -1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	
+	#SENSIBLE, TO REMOVE FIRST IF THERE IS ANY PHYSIC ISSUE OR UNIDENTIFIED ISSUE
+	Engine.time_scale = 4.0
+	Engine.iterations_per_second = 240
+	
 	$Level_0.place($MapOrigin.position)
 	$Hero.start(get_node("Level_"+String(currLevel)).position+get_node("Level_"+String(currLevel)+"/StartingPos").position,GRAVITY)
 

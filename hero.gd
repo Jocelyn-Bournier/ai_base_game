@@ -28,7 +28,7 @@ func _ready():
 func _physics_process(delta):
 	
 	delta = 1.0 - (1.0 - delta * 60.0)
-
+	
 	if(speed > BASE_SPEED) :
 		speed = speed * 0.95 * delta
 		if(speed > 1.5*BASE_SPEED):
